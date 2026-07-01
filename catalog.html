@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html class="scroll-smooth dark" lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Catálogo | Arev Sport | Calzado y Accesorios Deportivos</title>
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
+
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+
+    <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon">
+    <link rel="icon" type="image/png" sizes="512x512" href="assets/favicon-512x512.png">
+    <link rel="icon" type="image/png" sizes="256x256" href="assets/favicon-256x256.png">
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#C92127">
+    <link rel="stylesheet" href="arev-identity.css">
+    <style>
+        .glass-panel {
+            background: rgba(20, 27, 37, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .glass-panel::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(800px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(201, 33, 39, 0.08), transparent 40%);
+            z-index: 1;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .glass-panel:hover::before {
+            opacity: 1;
+        }
+
+        .glass-panel:hover {
+            border-color: rgba(201, 33, 39, 0.4);
+            background: rgba(20, 27, 37, 0.9);
+            transform: translateY(-6px);
+            box-shadow: 0 24px 50px rgba(201, 33, 39, 0.15);
+        }
+
+        .product-card {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .product-image-container {
+            aspect-ratio: 1/1;
+        }
+
+        .product-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .animate-scroll {
+            animation: scroll 30s linear infinite;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+
+        .skeleton {
+            background: linear-gradient(90deg, rgba(166, 174, 181, 0.1), rgba(166, 174, 181, 0.2), rgba(166, 174, 181, 0.1));
+            background-size: 200% 100%;
+            animation: skeleton-loading 1.5s infinite;
+        }
+
+        @keyframes skeleton-loading {
+            0% {
+                background-position: 200%;
+            }
+
+            100% {
+                background-position: -200%;
+            }
+        }
+
+        .arev-button-primary:hover {
+            transform: translateY(-2px);
+        }
+
+        .category-btn {
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .category-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(201, 33, 39, 0.25);
+        }
+
+        .arev-input:focus {
+            box-shadow: 0 0 0 3px rgba(201, 33, 39, 0.2);
+        }
+
+        .hero-zoom {
+            transition: transform 2.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .hero-parallax {
+            transform: translateZ(0);
+            transition: transform 0.1s ease-out;
+        }
+
+        .hero-overlay {
+            pointer-events: none;
+            background: linear-gradient(180deg, rgba(5, 10, 20, 0.92) 0%, rgba(5, 10, 20, 0.72) 35%, rgba(5, 10, 20, 0.40) 55%, rgba(5, 10, 20, 0.25) 75%, rgba(5, 10, 20, 0.10) 100%);
+        }
+
+        .hero-content-backdrop {
+            pointer-events: none;
+            background: radial-gradient(circle at 50% 40%, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.36) 34%, transparent 60%), radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.20), transparent 34%), radial-gradient(circle at 80% 25%, rgba(0, 0, 0, 0.18), transparent 24%);
+            mix-blend-mode: normal;
+        }
+
+        .hero-text-panel {
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+            max-width: 850px;
+            width: min(100%, 850px);
+            align-items: center;
+            text-align: center;
+        }
+
+        @media (min-width: 768px) {
+            .hero-text-panel {
+                padding-left: 2rem;
+                padding-right: 2rem;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .hero-text-panel {
+                margin-left: clamp(6rem, 20vw, 18rem);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .hero-text-panel {
+                margin-left: clamp(8rem, 22vw, 20rem);
+            }
+        }
+
+        @media (min-width: 1280px) {
+            .hero-text-panel {
+                margin-left: clamp(10rem, 24vw, 22rem);
+            }
+        }
+
+        .hero-title {
+            text-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+        }
+
+        .hero-label span,
+        .hero-title span {
+            text-shadow: 0 10px 22px rgba(0, 0, 0, 0.32);
+        }
+
+        .hero-description {
+            color: rgba(255, 255, 255, 0.98);
+        }
+
+        .cashea-promo-card {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            width: min(100%, 820px);
+            background: rgba(0, 136, 55, 0.18);
+            border: 1px solid rgba(0, 216, 74, 0.24);
+            box-shadow: 0 0 40px rgba(0, 216, 74, 0.18);
+            border-radius: 16px;
+            padding: 1rem 1.25rem;
+            margin: 0 auto 1.25rem;
+            backdrop-filter: blur(14px);
+        }
+
+        .cashea-icon {
+            min-width: 62px;
+            min-height: 62px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 18px;
+            background: rgba(255, 214, 0, 0.60);
+            border: 1px solid rgba(255, 214, 0, 1);
+            box-shadow: 0 0 24px rgba(255, 214, 0, 0.55);
+            padding: 0.55rem;
+        }
+
+        .cashea-card-logo {
+            width: auto;
+            height: auto;
+            max-width: 60px;
+            max-height: 56px;
+            object-fit: contain;
+            display: block;
+        }
+
+        .cashea-button-logo {
+            width: auto;
+            height: auto;
+            max-width: 28px;
+            max-height: 26px;
+            object-fit: contain;
+            display: block;
+        }
+
+        .cashea-copy {
+            text-align: left;
+        }
+
+        .cashea-title {
+            margin: 0;
+            font-size: 0.92rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: #8cff00;
+            font-weight: 700;
+            text-shadow: 0 0 8px rgba(140, 255, 0, 0.45);
+        }
+
+        .cashea-text {
+            margin: 0.25rem 0 0;
+            color: rgba(255, 255, 255, 0.86);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .hero-actions {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            width: min(100%, 820px);
+            margin: 0 auto 1.5rem;
+        }
+
+        .hero-action-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            min-width: 220px;
+            height: 55px;
+            padding: 0 1.75rem;
+            border-radius: 14px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+        }
+
+        .hero-action-btn-primary {
+            background: linear-gradient(135deg, #c92127 0%, #ff2b30 100%);
+            color: #ffffff;
+        }
+
+        .hero-action-btn-primary:hover {
+            box-shadow: 0 0 25px rgba(201, 33, 39, 0.45);
+            transform: translateY(-1px);
+        }
+
+        .hero-action-btn-secondary {
+            background: linear-gradient(135deg, #ffd600 0%, #f8c400 100%);
+            color: #141b25;
+            border: 1px solid rgba(255, 214, 0, 0.45);
+        }
+
+        .hero-action-btn-secondary:hover {
+            box-shadow: 0 0 25px rgba(255, 214, 0, 0.45);
+            transform: translateY(-1px);
+        }
+
+        .hero-benefits {
+            display: flex;
+            align-items: stretch;
+            justify-content: center;
+            gap: 1rem;
+            width: min(100%, 820px);
+            margin: 0 auto;
+            flex-wrap: wrap;
+        }
+
+        .benefit-card {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.9rem;
+            flex: 1 1 220px;
+            min-width: 220px;
+            padding: 1rem 1.25rem;
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(14px);
+        }
+
+        .benefit-icon {
+            color: #c92127;
+            font-size: 1.65rem;
+            margin-top: 0.2rem;
+        }
+
+        .benefit-title {
+            margin: 0;
+            color: #ffffff;
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .benefit-text {
+            margin: 0.35rem 0 0;
+            color: rgba(255, 255, 255, 0.75);
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        @media (max-width: 768px) {
+            .cashea-promo-card,
+            .hero-actions,
+            .hero-benefits {
+                width: 100%;
+            }
+
+            .cashea-promo-card {
+                flex-direction: column;
+                align-items: stretch;
+                text-align: center;
+            }
+
+            .cashea-copy {
+                text-align: center;
+            }
+
+            .hero-actions {
+                flex-direction: column;
+            }
+
+            .hero-action-btn {
+                width: 100%;
+                min-width: 0;
+            }
+
+            .benefit-card {
+                flex: 1 1 100%;
+            }
+        }
+
+        .hero-label {
+            margin-bottom: 0.75rem;
+        }
+
+        .hero-container:hover .hero-zoom {
+            transform: scale(1.08);
+        }
+    </style>
+
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "vector": "#C92127",
+                        "titanium": "#141B25",
+                        "platinum": "#A6AEB5",
+                        "white": "#FFFFFF",
+                        "surface": "#141B25",
+                        "background": "#141B25",
+                        "on-surface": "#FFFFFF",
+                        "on-surface-variant": "#A6AEB5"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "margin-desktop": "64px",
+                        "margin-mobile": "20px",
+                        "unit": "8px",
+                        "container-max": "1440px"
+                    },
+                    "fontFamily": {
+                        "headline-xl": ["Space Grotesk"],
+                        "body-lg": ["Hanken Grotesk"],
+                        "headline-lg-mobile": ["Space Grotesk"],
+                        "headline-md": ["Space Grotesk"],
+                        "label-sm": ["Space Grotesk"],
+                        "headline-lg": ["Space Grotesk"],
+                        "body-md": ["Hanken Grotesk"]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+
+<body class="bg-background text-on-surface font-body-md antialiased overflow-x-hidden">
+    <header class="arev-header fixed top-0 left-0 right-0 z-50 flex flex-col justify-center" style="background: rgba(20, 27, 37, 0.2); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);">
+        <div style="max-width: 1400px; margin: 0 auto; width: 100%; padding: 0 24px;">
+            <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3 lg:gap-4 py-3">
+                <a class="flex items-center gap-1.5 shrink-0 arev-brand-block" href="index.html" aria-label="Arev Sport inicio">
+                    <img src="assets/logo-arev-actual.png" alt="Arev Sport Logo" class="logo-brand" />
+                    <div class="leading-none" aria-hidden="true">
+                        <span class="block font-label-sm text-[11px] tracking-[0.18em] text-on-surface-variant/95 mt-1 uppercase arev-brand-subtitle font-medium">INNOVACIÓN<span class="opacity-60"> • </span>RENDIMIENTO<span class="opacity-60"> • </span>ESTILO</span>
+                    </div>
+                </a>
+
+                <button id="mobileMenuToggle" class="mobile-menu-button lg:hidden" aria-expanded="false" aria-controls="mobileMenuPanel" aria-label="Abrir menú de navegación">
+                    <span class="material-symbols-outlined text-[22px]">menu</span>
+                </button>
+
+                <nav class="hidden lg:flex items-center justify-center gap-1 arev-capsule rounded-full px-2 py-1">
+                    <a class="arev-nav-item font-label-sm text-[11px] px-5 py-2.5 rounded-full whitespace-nowrap hover:bg-vector/10" href="index.html">INICIO</a>
+                    <a class="arev-nav-item active font-label-sm text-[11px] px-5 py-2.5 rounded-full whitespace-nowrap hover:bg-vector/10" href="catalog.html">CATÁLOGO</a>
+                    <a class="arev-nav-item font-label-sm text-[11px] px-5 py-2.5 rounded-full whitespace-nowrap hover:bg-vector/10" href="about.html">NOSOTROS</a>
+                    <a class="arev-nav-item font-label-sm text-[11px] px-5 py-2.5 rounded-full whitespace-nowrap hover:bg-vector/10" href="contact.html">CONTACTO</a>
+                </nav>
+
+                <div class="flex items-center gap-1 md:gap-2 shrink-0 header-actions">
+                    <div class="hidden md:flex items-center arev-search rounded-full px-4 py-2 w-[240px]">
+                        <input id="header-search-input" class="w-full bg-transparent text-xs uppercase tracking-[0.16em] placeholder:text-platinum/50 text-white focus:outline-none" placeholder="Buscar" type="text" />
+                        <span id="header-search-button" class="material-symbols-outlined text-[18px] text-platinum ml-2 cursor-pointer">search</span>
+                    </div>
+                    <a href="catalog.html" class="p-2 rounded-full text-platinum hover:text-vector hover:bg-vector/10 transition-all duration-300" aria-label="Catálogo">
+                        <span class="material-symbols-outlined text-[22px]">shopping_bag</span>
+                    </a>
+                    <a href="contact.html" class="p-2 rounded-full text-platinum hover:text-vector hover:bg-vector/10 transition-all duration-300" aria-label="Contacto">
+                        <span class="material-symbols-outlined text-[22px]">contact_phone</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="w-full h-px bg-gradient-to-r from-transparent via-vector/50 to-transparent" style="box-shadow: 0 0 4px rgba(201,33,39,0.2);"></div>
+        <nav id="mobileMenuPanel" class="mobile-menu-panel lg:hidden px-4 pb-4">
+            <a class="arev-nav-item font-label-sm px-3 py-3 rounded-full whitespace-nowrap hover:bg-vector/10" href="index.html">INICIO</a>
+            <a class="arev-nav-item active font-label-sm px-3 py-3 rounded-full whitespace-nowrap hover:bg-vector/10" href="catalog.html">CATÁLOGO</a>
+            <a class="arev-nav-item font-label-sm px-3 py-3 rounded-full whitespace-nowrap hover:bg-vector/10" href="about.html">NOSOTROS</a>
+            <a class="arev-nav-item font-label-sm px-3 py-3 rounded-full whitespace-nowrap hover:bg-vector/10" href="contact.html">CONTACTO</a>
+        </nav>
+    </header>
+
+    <main class="pt-12 md:pt-14">
+        <section class="hero-container relative h-[85vh] md:h-[92vh] lg:h-screen overflow-hidden bg-background">
+            <div class="absolute inset-0 z-0">
+                <img alt="Catálogo Arev Sport" class="hero-zoom w-full h-full object-cover hero-parallax" src="assets/catalogofoto.png" />
+            </div>
+            <div class="absolute inset-0 z-10 hero-overlay"></div>
+            <div class="absolute inset-0 hero-content-backdrop" style="z-index: 15;"></div>
+            <div class="relative z-20 h-full flex flex-col items-center justify-center text-center hero-text-panel" style="transform: translateY(20px);">
+                <div class="w-full max-w-full transition-all duration-1000 delay-300 ease-out flex justify-center">
+                    <h1 class="hero-title font-body-lg -mt-2 text-xl sm:text-2xl md:text-3xl lg:text-[51px] mb-5 text-on-surface leading-tight uppercase font-semibold tracking-[0.08em] leading-[0.98] text-center" style="font-weight: 550;">
+                        <span class="block">Catálogo</span>
+                        <span class="block" style="margin-top: 16px;"><span class="text-vector">Calzado</span> Y Accesorios</span>
+                    </h1>
+                </div>
+                <p class="hero-description font-body-lg text-sm md:text-base text-on-surface-variant max-w-[750px] mx-auto mb-8 md:mb-12 opacity-95 leading-relaxed">
+                    Precisión deportiva y confort de primer nivel. Una cuidada selección de zapatos y accesorios diseñados para superar los retos diarios con estilo.
+                </p>
+
+                <div class="cashea-promo-card">
+                    <div class="cashea-icon">
+                        <img src="assets/logo-cashea.png" alt="Cashea" class="cashea-card-logo">
+                    </div>
+                    <div class="cashea-copy">
+                        <p class="cashea-title">DISPONIBLE CON CASHEA</p>
+                        <p class="cashea-text">Compra hoy tus productos favoritos y paga en cómodas cuotas.</p>
+                    </div>
+                </div>
+
+                <div class="hero-actions">
+                    <a href="#contenedor-productos" class="hero-action-btn hero-action-btn-primary">
+                        VER PRODUCTOS
+                        <span class="material-symbols-outlined">arrow_forward</span>
+                    </a>
+                    <a href="#" class="hero-action-btn hero-action-btn-secondary">
+                        <img src="assets/logo-cashea.png" alt="Cashea" class="cashea-button-logo">
+                        COMPRAR CON CASHEA
+                    </a>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="py-12 md:py-24 px-4 md:px-margin-desktop max-w-container-max mx-auto">
+            <div class="mb-8 flex flex-col gap-4">
+                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                    <div id="catalog-status" class="text-sm text-on-surface-variant">Cargando catálogo...</div>
+                    <button id="refresh-catalog" class="inline-flex items-center justify-center rounded-full border border-platinum/30 px-5 py-2.5 text-sm uppercase tracking-[0.18em] text-white hover:border-vector hover:bg-vector transition-all duration-300 category-btn">
+                        Actualizar catálogo
+                    </button>
+                </div>
+
+                <div class="flex flex-col lg:flex-row gap-4 items-stretch lg:items-center">
+                    <div class="flex-1">
+                        <div class="relative">
+                            <input id="search-input" type="text" placeholder="Buscar productos..."
+                                class="w-full bg-titanium/50 border border-platinum/20 rounded-full px-5 py-3 pl-12 text-sm uppercase tracking-[0.16em] placeholder:text-platinum/50 text-white focus:outline-none focus:border-vector transition-all arev-input" />
+                            <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-platinum/50">search</span>
+                        </div>
+                    </div>
+                    <div id="category-filters" class="flex flex-wrap gap-2 justify-center lg:justify-end">
+                        <button data-category="TODOS" class="active px-4 py-2.5 text-xs uppercase tracking-[0.16em] rounded-full border border-vector bg-vector text-white font-semibold transition-all duration-300 category-btn">Todos</button>
+                        <button data-category="ZAPATOS" class="px-4 py-2.5 text-xs uppercase tracking-[0.16em] rounded-full border border-platinum/30 text-platinum hover:border-vector hover:text-vector transition-all duration-300 category-btn">Zapatos</button>
+                        <button data-category="FRANELAS" class="px-4 py-2.5 text-xs uppercase tracking-[0.16em] rounded-full border border-platinum/30 text-platinum hover:border-vector hover:text-vector transition-all duration-300 category-btn">Franelas</button>
+                        <button data-category="SHORTS" class="px-4 py-2.5 text-xs uppercase tracking-[0.16em] rounded-full border border-platinum/30 text-platinum hover:border-vector hover:text-vector transition-all duration-300 category-btn">Shorts</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="cart-panel" class="mb-8 arev-panel rounded-2xl p-5 text-on-surface-variant">
+                <div class="flex items-center justify-between gap-4">
+                    <div>
+                        <h2 class="font-semibold uppercase tracking-[0.2em] text-vector text-sm">Carrito de Compras</h2>
+                        <p id="cart-status" class="text-xs text-on-surface-variant mt-1">Tu carrito está vacío.</p>
+                    </div>
+                    <div class="text-right">
+                        <p class="text-xs uppercase tracking-[0.2em] text-on-surface-variant">Total</p>
+                        <p id="cart-total" class="text-xl font-bold text-white">$0.00</p>
+                    </div>
+                </div>
+                <div id="cart-items" class="mt-4 grid gap-3"></div>
+            </div>
+
+            <div id="contenedor-productos" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 auto-rows-fr">
+            </div>
+        </section>
+
+        <div class="w-full overflow-hidden bg-titanium py-6 border-y border-white/10">
+            <div class="flex animate-scroll whitespace-nowrap gap-16 md:gap-24 w-max">
+                <span class="font-label-sm text-xs text-platinum uppercase tracking-[0.4em] flex items-center gap-4">
+                    <span class="w-2 h-2 rounded-full bg-vector"></span> ZAPATOS DE RENDIMIENTO
+                </span>
+                <span class="font-label-sm text-xs text-platinum uppercase tracking-[0.4em] flex items-center gap-4">
+                    <span class="w-2 h-2 rounded-full bg-vector animate-pulse"></span> FRANELAS TÉCNICAS
+                </span>
+                <span class="font-label-sm text-xs text-platinum uppercase tracking-[0.4em] flex items-center gap-4">
+                    <span class="w-2 h-2 rounded-full bg-vector"></span> SHORTS DEPORTIVOS
+                </span>
+                <span class="font-label-sm text-xs text-platinum uppercase tracking-[0.4em] flex items-center gap-4">
+                    <span class="w-2 h-2 rounded-full bg-vector"></span> CALIDAD AREV SPORT
+                </span>
+                <span class="font-label-sm text-xs text-platinum uppercase tracking-[0.4em] flex items-center gap-4">
+                    <span class="w-2 h-2 rounded-full bg-vector"></span> ZAPATOS DE RENDIMIENTO
+                </span>
+                <span class="font-label-sm text-xs text-platinum uppercase tracking-[0.4em] flex items-center gap-4">
+                    <span class="w-2 h-2 rounded-full bg-vector animate-pulse"></span> FRANELAS TÉCNICAS
+                </span>
+                <span class="font-label-sm text-xs text-platinum uppercase tracking-[0.4em] flex items-center gap-4">
+                    <span class="w-2 h-2 rounded-full bg-vector"></span> SHORTS DEPORTIVOS
+                </span>
+                <span class="font-label-sm text-xs text-platinum uppercase tracking-[0.4em] flex items-center gap-4">
+                    <span class="w-2 h-2 rounded-full bg-vector"></span> CALIDAD AREV SPORT
+                </span>
+            </div>
+        </div>
+    </main>
+
+    <footer class="w-full py-16 md:py-24 px-margin-mobile md:px-margin-desktop bg-titanium border-t border-white/5">
+        <div class="max-w-container-max mx-auto flex flex-col gap-12">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
+                <div class="flex flex-col gap-3">
+                    <a class="flex items-center gap-3" href="index.html">
+                        <img src="assets/logo-arev-actual.png" alt="Arev Sport Logo" class="logo-footer" />
+                    </a>
+                    <p class="font-label-sm text-label-sm tracking-widest text-on-surface-variant max-w-lg leading-relaxed uppercase">
+                        Centro Comercial Paso Real, Nivel PB, Charallave, Edo. Miranda, Venezuela.<br/>
+                        Contacto: +58 412-9114603
+                    </p>
+                    <div class="flex gap-4 mt-2">
+                        <a href="https://wa.me/584129114603" target="_blank" class="p-2 rounded-full bg-vector/10 text-vector hover:bg-vector hover:text-white transition-all category-btn" aria-label="WhatsApp">
+                            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.472-.148-.672.149-.198.297-.769.966-.944 1.164-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.173.198-.298.297-.497.099-.198.05-.372-.025-.52-.074-.149-.672-1.611-.921-2.206-.242-.579-.487-.5-.672-.51l-.573-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.262.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414-.074-.124-.273-.198-.57-.347z" />
+                            </svg>
+                        </a>
+                        <a href="https://www.instagram.com/arevsport" target="_blank" class="p-2 rounded-full bg-vector/10 text-vector hover:bg-vector hover:text-white transition-all category-btn" aria-label="Instagram">
+                            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069ZM12 0C8.741 0 8.333.014 7.053.072 2.89.262.26 2.865.072 7.052.014 8.333 0 8.741 0 12s.014 3.668.072 4.948c.189 4.183 2.82 6.79 6.98 6.98C8.333 23.986 8.741 24 12 24s3.668-.014 4.948-.072c4.182-.19 6.79-2.818 6.98-6.98.058-1.28.072-1.689.072-4.948s-.014-3.668-.072-4.948C23.738 2.818 21.11.19 16.949.072 15.668.014 15.26 0 12 0Zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324ZM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8Zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881Z" fill="currentColor" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="flex flex-wrap gap-6 md:gap-10">
+                    <a class="font-label-sm text-label-sm tracking-widest text-on-surface-variant hover:text-vector transition-colors duration-200" href="index.html">INICIO</a>
+                    <a class="font-label-sm text-label-sm tracking-widest text-on-surface-variant hover:text-vector transition-colors duration-200" href="catalog.html">CATÁLOGO</a>
+                    <a class="font-label-sm text-label-sm tracking-widest text-on-surface-variant hover:text-vector transition-colors duration-200" href="about.html">NOSOTROS</a>
+                    <a class="font-label-sm text-label-sm tracking-widest text-on-surface-variant hover:text-vector transition-colors duration-200" href="contact.html">CONTACTO</a>
+                </div>
+            </div>
+            <div class="h-[1px] bg-white/10 w-full"></div>
+            <div class="flex flex-col sm:flex-row justify-between items-center gap-6 text-center sm:text-left">
+                <p class="font-label-sm text-label-sm tracking-widest text-on-surface-variant/50">
+                    © 2026 AREV SPORT. TODOS LOS DERECHOS RESERVADOS.
+                </p>
+                <div class="flex gap-6">
+                    <a href="https://wa.me/584129114603" target="_blank" class="flex items-center gap-2 font-label-sm text-label-sm text-vector hover:bg-vector/10 transition-all rounded-full px-4 py-2 category-btn">
+                        <svg class="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.472-.148-.672.149-.198.297-.769.966-.944 1.164-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.173.198-.298.297-.497.099-.198.05-.372-.025-.52-.074-.149-.672-1.611-.921-2.206-.242-.579-.487-.5-.672-.51l-.573-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.262.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414-.074-.124-.273-.198-.57-.347z" />
+                        </svg>
+                        WHATSAPP
+                    </a>
+                    <a href="https://www.instagram.com/arevsport" target="_blank" class="flex items-center gap-2 font-label-sm text-label-sm text-vector hover:bg-vector/10 transition-all rounded-full px-4 py-2 category-btn">
+                        <svg class="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069ZM12 0C8.741 0 8.333.014 7.053.072 2.89.262.26 2.865.072 7.052.014 8.333 0 8.741 0 12s.014 3.668.072 4.948c.189 4.183 2.82 6.79 6.98 6.98C8.333 23.986 8.741 24 12 24s3.668-.014 4.948-.072c4.182-.19 6.79-2.818 6.98-6.98.058-1.28.072-1.689.072-4.948s-.014-3.668-.072-4.948C23.738 2.818 21.11.19 16.949.072 15.668.014 15.26 0 12 0Zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324ZM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8Zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881Z" fill="currentColor" />
+                        </svg>
+                        INSTAGRAM
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelectorAll('.glass-panel').forEach(panel => {
+            panel.addEventListener('mousemove', e => {
+                const rect = panel.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                panel.style.setProperty('--mouse-x', `${x}px`);
+                panel.style.setProperty('--mouse-y', `${y}px`);
+            });
+        });
+
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fade-in-up');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section > div > div').forEach(el => {
+            observer.observe(el);
+        });
+        const mobileToggle = document.getElementById('mobileMenuToggle');
+        const mobilePanel = document.getElementById('mobileMenuPanel');
+
+        if (mobileToggle && mobilePanel) {
+            mobileToggle.addEventListener('click', () => {
+                const isOpen = mobilePanel.classList.toggle('open');
+                mobileToggle.setAttribute('aria-expanded', String(isOpen));
+                if (!isOpen) {
+                    mobilePanel.style.maxHeight = '0';
+                } else {
+                    mobilePanel.style.maxHeight = mobilePanel.scrollHeight + 'px';
+                }
+            });
+        }    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+    <script src="app.js?v=1.0"></script>
+</body>
+
+</html>

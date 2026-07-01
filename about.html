@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html class="scroll-smooth dark" lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Nosotros | Arev Sport | Calzado y Accesorios Deportivos</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon">
+    <link rel="icon" type="image/png" sizes="512x512" href="assets/favicon-512x512.png">
+    <link rel="icon" type="image/png" sizes="256x256" href="assets/favicon-256x256.png">
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#C92127">
+    <link rel="stylesheet" href="arev-identity.css">
+    <style>
+        .glass-panel {
+            background: rgba(20, 27, 37, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .glass-panel:hover {
+            border-color: rgba(201, 33, 39, 0.3);
+            background: rgba(20, 27, 37, 0.85);
+        }
+
+        .cyber-glow {
+            text-shadow: 0 0 10px rgba(201, 33, 39, 0.5), 0 0 20px rgba(201, 33, 39, 0.3);
+        }
+
+        .cyber-border {
+            border: 1px solid rgba(201, 33, 39, 0.3);
+            box-shadow: inset 0 0 10px rgba(201, 33, 39, 0.1);
+        }
+
+        .cyber-line {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(201, 33, 39, 0.5), transparent);
+        }
+
+        /* Hero video styles - full width hero matching index/catalog visuals */
+        .about-hero {
+            position: relative;
+            width: 100%;
+            /* start immediately below header - header approx 90px */
+            margin-top: -7rem; /* cancels page top padding (pt-28) so video sits under header */
+            /* increase hero height so video covers further down the page */
+            min-height: calc(120vh - 90px);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-video {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+            animation: slowZoom 20s ease-in-out infinite alternate;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            /* Solid dark overlay + lateral gradient to darken text area */
+            background:
+                linear-gradient(90deg, rgba(0,0,0,0.80) 0%, rgba(0,0,0,0.55) 40%, rgba(0,0,0,0.25) 100%),
+                linear-gradient(180deg, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.65) 100%);
+            z-index: 2;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 5;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+            padding: 2rem 1rem;
+            animation: heroFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+        .about-hero.video-fallback {
+            background: url('assets/tienda-arev.jpg.png') center/cover no-repeat;
+        }
+
+        .about-hero.video-fallback .hero-overlay {
+            background: linear-gradient(180deg, rgba(0,0,0,0.62) 0%, rgba(0,0,0,0.62) 100%);
+        }
+        @keyframes slowZoom {
+            from { transform: scale(1); }
+            to { transform: scale(1.08); }
+        }
+
+        @media (max-width: 767px) {
+            .hero-video {
+                animation: none !important;
+                transform: none !important;
+            }
+        }
+
+        @keyframes heroFadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Text styles for better legibility on video */
+        .about-hero .hero-content h1 {
+            font-weight: 800;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.8);
+        }
+
+        .about-hero .hero-content p {
+            font-weight: 400;
+            color: rgba(255,255,255,0.85);
+        }
+
+        .about-image {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(20, 27, 37, 0.85);
+            border-radius: 20px;
+            min-height: 500px;
+            overflow: hidden;
+            border: 1px solid rgba(227, 27, 35, 0.45);
+            box-shadow: 0 24px 60px rgba(227, 27, 35, 0.22);
+            transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+        }
+
+        .about-image:hover {
+            transform: scale(1.03);
+            box-shadow: 0 30px 70px rgba(227, 27, 35, 0.28);
+            border-color: rgba(227, 27, 35, 0.28);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            max-height: 100%;
+            object-fit: contain;
+            border-radius: 20px;
+            display: block;
+        }
+
+        .pulse-dot {
+            box-shadow: 0 0 8px #C92127;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            50% {
+                transform: scale(1.5);
+                opacity: 0.5;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #141B25;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #C92127;
+            border-radius: 10px;
+        }
+    </style>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "vector": "#C92127",
+                        "titanium": "#141B25",
+                        "platinum": "#A6AEB5",
+                        "white": "#FFFFFF",
+                        "surface": "#141B25",
+                        "background": "#141B25",
+                        "on-surface": "#FFFFFF",
+                        "on-surface-variant": "#A6AEB5"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "margin-desktop": "64px",
+                        "margin-mobile": "20px",
+                        "unit": "8px",
+                        "container-max": "1440px"
+                    },
+                    "fontFamily": {
+                        "headline-xl": ["Space Grotesk"],
+                        "body-lg": ["Hanken Grotesk"],
+                        "headline-lg-mobile": ["Space Grotesk"],
+                        "headline-md": ["Space Grotesk"],
+                        "label-sm": ["Space Grotesk"],
+                        "headline-lg": ["Space Grotesk"],
+                        "body-md": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "headline-xl": ["64px", { "lineHeight": "1.1", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "letterSpacing": "0.01em", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["32px", { "lineHeight": "1.2", "letterSpacing": "0.02em", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "1.4", "letterSpacing": "0.02em", "fontWeight": "500" }],
+                        "label-sm": ["12px", { "lineHeight": "1", "letterSpacing": "0.1em", "fontWeight": "600" }],
+                        "headline-lg": ["40px", { "lineHeight": "1.2", "letterSpacing": "0.03em", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "letterSpacing": "0", "fontWeight": "400" }]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+
+<body class="bg-background text-on-surface font-body-md antialiased overflow-x-hidden">
+    <header class="arev-header fixed top-0 left-0 right-0 z-50 flex flex-col justify-center" style="background: rgba(20, 27, 37, 0.2); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);">
+        <div style="max-width: 1400px; margin: 0 auto; width: 100%; padding: 0 24px;">
+            <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3 lg:gap-4 py-3">
+                <a class="flex items-center gap-1.5 shrink-0 arev-brand-block" href="index.html" aria-label="Arev Sport inicio">
+                    <img src="assets/logo-arev-actual.png" alt="Arev Sport Logo" class="logo-brand" />
+                    <div class="leading-none" aria-hidden="true">
+                        <span class="block font-label-sm text-[11px] tracking-[0.18em] text-on-surface-variant/95 mt-1 uppercase arev-brand-subtitle font-medium">INNOVACIÓN<span class="opacity-60"> • </span>RENDIMIENTO<span class="opacity-60"> • </span>ESTILO</span>
+                    </div>
+                </a>
+
+                <button id="mobileMenuToggle" class="mobile-menu-button lg:hidden" aria-expanded="false" aria-controls="mobileMenuPanel" aria-label="Abrir menú de navegación">
+                    <span class="material-symbols-outlined text-[22px]">menu</span>
+                </button>
+
+                <nav class="hidden lg:flex items-center justify-center gap-1 arev-capsule rounded-full px-2 py-1">
+                    <a class="arev-nav-item font-label-sm text-[11px] px-5 py-2.5 rounded-full whitespace-nowrap hover:bg-vector/10" href="index.html">INICIO</a>
+                    <a class="arev-nav-item font-label-sm text-[11px] px-5 py-2.5 rounded-full whitespace-nowrap hover:bg-vector/10" href="catalog.html">CATÁLOGO</a>
+                    <a class="arev-nav-item active font-label-sm text-[11px] px-5 py-2.5 rounded-full whitespace-nowrap hover:bg-vector/10" href="about.html">NOSOTROS</a>
+                    <a class="arev-nav-item font-label-sm text-[11px] px-5 py-2.5 rounded-full whitespace-nowrap hover:bg-vector/10" href="contact.html">CONTACTO</a>
+                </nav>
+
+                <div class="flex items-center gap-1 md:gap-2 shrink-0 header-actions">
+                    <div class="hidden md:flex items-center arev-search rounded-full px-4 py-2 w-[240px]">
+                        <input class="w-full bg-transparent text-xs uppercase tracking-[0.16em] placeholder:text-platinum/50 text-white focus:outline-none" placeholder="Buscar" type="text" />
+                        <span class="material-symbols-outlined text-[18px] text-platinum ml-2">search</span>
+                    </div>
+                    <a href="catalog.html" class="p-2 rounded-full text-platinum hover:text-vector hover:bg-vector/10 transition-all duration-300" aria-label="Catálogo">
+                        <span class="material-symbols-outlined text-[22px]">shopping_bag</span>
+                    </a>
+                    <a href="contact.html" class="p-2 rounded-full text-platinum hover:text-vector hover:bg-vector/10 transition-all duration-300" aria-label="Contacto">
+                        <span class="material-symbols-outlined text-[22px]">contact_phone</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="w-full h-px bg-gradient-to-r from-transparent via-vector/50 to-transparent" style="box-shadow: 0 0 4px rgba(201,33,39,0.2);"></div>
+        <nav id="mobileMenuPanel" class="mobile-menu-panel lg:hidden px-4 pb-4">
+            <a class="arev-nav-item font-label-sm px-3 py-3 rounded-full whitespace-nowrap hover:bg-vector/10" href="index.html">INICIO</a>
+            <a class="arev-nav-item font-label-sm px-3 py-3 rounded-full whitespace-nowrap hover:bg-vector/10" href="catalog.html">CATÁLOGO</a>
+            <a class="arev-nav-item active font-label-sm px-3 py-3 rounded-full whitespace-nowrap hover:bg-vector/10" href="about.html">NOSOTROS</a>
+            <a class="arev-nav-item font-label-sm px-3 py-3 rounded-full whitespace-nowrap hover:bg-vector/10" href="contact.html">CONTACTO</a>
+        </nav>
+    </header>
+
+    <main class="pt-28">
+        <section class="about-hero relative w-full">
+            <video id="heroVideo" class="hero-video" autoplay muted loop playsinline preload="auto" poster="assets/tienda-arev.jpg.png" src="assets/video-tienda.mp4">
+                <source src="assets/video-tienda.mp4" type="video/mp4">
+                Tu navegador no soporta video HTML5.
+            </video>
+            <div class="hero-overlay"></div>
+
+            <div class="hero-content relative max-w-3xl w-full px-4 py-16 md:py-28">
+                <div class="flex items-center gap-2 mb-4">
+                    <span class="w-2 h-2 rounded-full bg-vector animate-pulse"></span>
+                    <span class="font-label-sm text-xs md:text-sm text-vector tracking-[0.2em] uppercase">Nuestra Historia</span>
+                </div>
+                <h1 class="font-headline-xl text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-4 md:mb-6 text-on-surface leading-tight uppercase font-bold">
+                    Conoce <span class="text-vector">Arev Sport</span>
+                </h1>
+                <p class="font-body-lg text-sm md:text-base text-on-surface-variant max-w-2xl leading-relaxed">
+                    Una boutique dedicada al calzado de rendimiento y accesorios deportivos de élite, donde la pasión por el deporte se fusiona con estilo urbano.
+                </p>
+            </div>
+        </section>
+
+        <section class="py-24 md:py-36 px-gutter max-w-container-max mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+                <div class="md:col-span-7 relative overflow-hidden rounded-lg">
+                    <div class="absolute inset-0">
+                        <img class="w-full h-full object-cover opacity-20"
+                            alt="Detalle textil deportivo"
+                            src="https://images.unsplash.com/photo-1583743814966-84223721e6d4?auto=format&fit=crop&q=80&w=800" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-background/90 via-titanium/50 to-transparent"></div>
+                    </div>
+                    <div class="relative z-10 glass-panel p-8 rounded-lg">
+                        <span class="font-label-sm text-label-sm text-vector block mb-4">01 / NUESTRA HISTORIA</span>
+                        <h2 class="font-headline-lg text-headline-lg mb-6 uppercase tracking-wider">Historia</h2>
+                        <p class="font-body-md text-body-md text-on-surface-variant max-w-lg leading-relaxed mb-4">
+                            Arev Sport nació en 2024 en el corazón del Centro Comercial Paso Real, Charallave. 
+                            Fundada por un equipo de deportistas y diseñadores apasionados, la marca surgió 
+                            de la necesidad de un calzado de rendimiento que no sacrificara el estilo urbano.
+                        </p>
+                        <p class="font-body-md text-body-md text-on-surface-variant max-w-lg leading-relaxed">
+                            Desde nuestros inicios, hemos trabajado con marcas reconocidas como Nike, Adidas y Puma,
+                            seleccionando cuidadosamente cada modelo para ofrecer solo productos de primera calidad
+                            que cumplan con los estándares más altos de rendimiento deportivo.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="md:col-span-5 flex flex-col gap-gutter">
+                    <div class="flex-1 flex flex-col justify-center border-l-4 border-vector rounded-lg glass-panel p-8">
+                        <h3 class="font-headline-md text-headline-md mb-4 text-vector uppercase tracking-widest">Misión</h3>
+                        <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                            Proveer calzado y accesorios deportivos de la más alta calidad, combinando 
+                            tecnología de vanguardia con diseño estético exclusivo, para atletas y 
+                            entusiastas del estilo urbano que buscan excelencia en cada movimiento.
+                        </p>
+                    </div>
+                    <div class="flex-1 flex flex-col justify-center border-l-4 border-platinum rounded-lg glass-panel p-8">
+                        <h3 class="font-headline-md text-headline-md mb-4 text-platinum uppercase tracking-widest">Visión</h3>
+                        <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                            Convertirnos en la boutique deportiva líder en Venezuela, reconocida por 
+                            nuestra selección premium y asesoría especializada, expandiéndonos a nuevas 
+                            sedes manteniendo nuestro compromiso con la excelencia.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-24 md:py-36 bg-titanium/30 border-y border-white/5">
+            <div class="max-w-container-max mx-auto px-gutter">
+                <div class="text-center mb-12">
+                    <span class="font-label-sm text-label-sm text-vector uppercase tracking-widest">Valores Fundamentales</span>
+                    <h2 class="font-headline-lg text-headline-lg mt-4 uppercase tracking-wider">¿Qué nos define?</h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="glass-panel p-8 rounded-lg text-center">
+                        <span class="material-symbols-outlined text-vector mb-6 text-4xl">verified</span>
+                        <h4 class="font-headline-md text-headline-md mb-4 uppercase text-white">Calidad Garantizada</h4>
+                        <p class="font-body-md text-body-md text-on-surface-variant">
+                            Cada producto pasa por rigurosos controles de autenticidad y calidad antes de ser ofrecido.
+                        </p>
+                    </div>
+                    <div class="glass-panel p-8 rounded-lg text-center">
+                        <span class="material-symbols-outlined text-vector mb-6 text-4xl">speed</span>
+                        <h4 class="font-headline-md text-headline-md mb-4 uppercase text-white">Rendimiento Máximo</h4>
+                        <p class="font-body-md text-body-md text-on-surface-variant">
+                            Seleccionamos productos con tecnologías comprobadas para optimizar tu desempeño deportivo.
+                        </p>
+                    </div>
+                    <div class="glass-panel p-8 rounded-lg text-center">
+                        <span class="material-symbols-outlined text-vector mb-6 text-4xl">favorite</span>
+                        <h4 class="font-headline-md text-headline-md mb-4 uppercase text-white">Pasión Deportiva</h4>
+                        <p class="font-body-md text-body-md text-on-surface-variant">
+                            Vivimos y soñamos con el deporte, compartiendo esa pasión en cada interacción.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-24 md:py-36 px-gutter max-w-container-max mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-[55%_45%] gap-12 items-center">
+                <div class="lg:col-span-1">
+                    <span class="font-label-sm text-label-sm text-vector block mb-4 uppercase tracking-widest">Lo que nos hace únicos</span>
+                    <h2 class="font-headline-lg text-headline-lg mb-8 uppercase tracking-wider">Nuestros Diferenciadores</h2>
+                    <div class="space-y-8">
+                        <div class="flex gap-6 items-start">
+                            <div class="w-12 h-12 flex-shrink-0 rounded-full bg-vector/20 flex items-center justify-center">
+                                <span class="material-symbols-outlined text-vector">storefront</span>
+                            </div>
+                            <div>
+                                <h5 class="font-headline-md text-lg text-white mb-2 uppercase">Asesoría Especializada</h5>
+                                <p class="font-body-md text-body-md text-on-surface-variant">Análisis de pisada personalizado y recomendación de productos según tu disciplina deportiva.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-6 items-start">
+                            <div class="w-12 h-12 flex-shrink-0 rounded-full bg-vector/20 flex items-center justify-center">
+                                <span class="material-symbols-outlined text-vector">local_shipping</span>
+                            </div>
+                            <div>
+                                <h5 class="font-headline-md text-lg text-white mb-2 uppercase">Envíos Seguros</h5>
+                                <p class="font-body-md text-body-md text-on-surface-variant">Garantía de entrega protegida con seguimiento en todo momento.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-6 items-start">
+                            <div class="w-12 h-12 flex-shrink-0 rounded-full bg-vector/20 flex items-center justify-center">
+                                <span class="material-symbols-outlined text-vector">handshake</span>
+                            </div>
+                            <div>
+                                <h5 class="font-headline-md text-lg text-white mb-2 uppercase">Garantía Extendida</h5>
+                                <p class="font-body-md text-body-md text-on-surface-variant">Todos los productos cuentan con garantía de satisfacción y devolución.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:col-span-1 about-image relative min-h-[500px] rounded-[20px] overflow-hidden">
+                    <img src="assets/presentacion.png" alt="Presentación Arev Sport" />
+                </div>
+            </div>
+        </section>
+
+        <section class="py-24 md:py-36 relative">
+            <div class="max-w-container-max mx-auto px-gutter">
+                <div class="relative glass-panel p-12 md:p-16 rounded-lg text-center">
+                    <span class="material-symbols-outlined text-vector/20 text-8xl absolute -top-10 left-0 -translate-x-1/2">format_quote</span>
+                    <h3 class="font-headline-lg text-headline-lg italic font-light leading-snug max-w-3xl mx-auto">
+                        "El calzado deportivo no es solo una herramienta de rendimiento; es la base del movimiento y la
+                        expresión de tu estilo diario."
+                    </h3>
+                    <p class="mt-8 font-label-sm text-label-sm text-vector tracking-[0.4em] uppercase cyber-glow"> AREV
+                        SPORT MANIFESTO</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="w-full py-16 md:py-24 px-margin-mobile md:px-margin-desktop bg-titanium border-t border-white/5">
+        <div class="max-w-container-max mx-auto flex flex-col gap-12">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
+                <div class="flex flex-col gap-3">
+                    <a class="flex items-center gap-3" href="index.html">
+                        <img src="assets/logo-arev-actual.png" alt="Arev Sport Logo" class="logo-footer" />
+                    </a>
+                    <p class="font-label-sm text-label-sm tracking-widest text-on-surface-variant max-w-lg leading-relaxed uppercase">
+                        Centro Comercial Paso Real, Nivel PB, Charallave, Edo. Miranda, Venezuela.<br/>
+                        Contacto: +58 412-9114603
+                    </p>
+                    <div class="flex gap-4 mt-2">
+                        <a href="https://wa.me/584129114603" target="_blank" class="p-2 rounded-full bg-vector/10 text-vector hover:bg-vector hover:text-white transition-all" aria-label="WhatsApp">
+                            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.472-.148-.672.149-.198.297-.769.966-.944 1.164-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.173.198-.298.297-.497.099-.198.05-.372-.025-.52-.074-.149-.672-1.611-.921-2.206-.242-.579-.487-.5-.672-.51l-.573-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.262.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414-.074-.124-.273-.198-.57-.347z"/>
+                            </svg>
+                        </a>
+                        <a href="https://www.instagram.com/arevsport" target="_blank" class="p-2 rounded-full bg-vector/10 text-vector hover:bg-vector hover:text-white transition-all" aria-label="Instagram">
+                            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069ZM12 0C8.741 0 8.333.014 7.053.072 2.89.262.26 2.865.072 7.052.014 8.333 0 8.741 0 12s.014 3.668.072 4.948c.189 4.183 2.82 6.79 6.98 6.98C8.333 23.986 8.741 24 12 24s3.668-.014 4.948-.072c4.182-.19 6.79-2.818 6.98-6.98.058-1.28.072-1.689.072-4.948s-.014-3.668-.072-4.948C23.738 2.818 21.11.19 16.949.072 15.668.014 15.26 0 12 0Zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324ZM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8Zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881Z" fill="currentColor"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="flex flex-wrap gap-6 md:gap-10">
+                    <a class="font-label-sm text-label-sm tracking-widest text-on-surface-variant hover:text-vector transition-colors duration-200" href="index.html">INICIO</a>
+                    <a class="font-label-sm text-label-sm tracking-widest text-on-surface-variant hover:text-vector transition-colors duration-200" href="catalog.html">CATÁLOGO</a>
+                    <a class="font-label-sm text-label-sm tracking-widest text-on-surface-variant hover:text-vector transition-colors duration-200" href="about.html">NOSOTROS</a>
+                    <a class="font-label-sm text-label-sm tracking-widest text-on-surface-variant hover:text-vector transition-colors duration-200" href="contact.html">CONTACTO</a>
+                </div>
+            </div>
+            <div class="h-[1px] bg-white/10 w-full"></div>
+            <div class="flex flex-col sm:flex-row justify-between items-center gap-6 text-center sm:text-left">
+                <p class="font-label-sm text-label-sm tracking-widest text-on-surface-variant/50">
+                    © 2026 AREV SPORT. TODOS LOS DERECHOS RESERVADOS.
+                </p>
+                <div class="flex gap-6">
+                    <a href="https://wa.me/584129114603" target="_blank" class="flex items-center gap-2 font-label-sm text-label-sm text-vector hover:bg-vector/10 transition-all rounded-full px-4 py-2">
+                        <svg class="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.472-.148-.672.149-.198.297-.769.966-.944 1.164-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.173.198-.298.297-.497.099-.198.05-.372-.025-.52-.074-.149-.672-1.611-.921-2.206-.242-.579-.487-.5-.672-.51l-.573-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.262.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414-.074-.124-.273-.198-.57-.347z"/>
+                        </svg>
+                        WHATSAPP
+                    </a>
+                    <a href="https://www.instagram.com/arevsport" target="_blank" class="flex items-center gap-2 font-label-sm text-label-sm text-vector hover:bg-vector/10 transition-all rounded-full px-4 py-2">
+                        <svg class="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069ZM12 0C8.741 0 8.333.014 7.053.072 2.89.262.26 2.865.072 7.052.014 8.333 0 8.741 0 12s.014 3.668.072 4.948c.189 4.183 2.82 6.79 6.98 6.98C8.333 23.986 8.741 24 12 24s3.668-.014 4.948-.072c4.182-.19 6.79-2.818 6.98-6.98.058-1.28.072-1.689.072-4.948s-.014-3.668-.072-4.948C23.738 2.818 21.11.19 16.949.072 15.668.014 15.26 0 12 0Zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324ZM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8Zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881Z" fill="currentColor"/>
+                        </svg>
+                        INSTAGRAM
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let lastScroll = 0;
+        const header = document.querySelector('header');
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            if (currentScroll <= 100) {
+                header.style.transform = 'translateY(0)';
+                header.classList.remove('bg-titanium/95');
+                return;
+            }
+            if (currentScroll > lastScroll) {
+                header.style.transform = 'translateY(-100%)';
+            } else {
+                header.style.transform = 'translateY(0)';
+                header.classList.add('bg-titanium/95');
+            }
+            lastScroll = currentScroll;
+        });
+
+        const mobileToggle = document.getElementById('mobileMenuToggle');
+        const mobilePanel = document.getElementById('mobileMenuPanel');
+
+        if (mobileToggle && mobilePanel) {
+            mobileToggle.addEventListener('click', () => {
+                const isOpen = mobilePanel.classList.toggle('open');
+                mobileToggle.setAttribute('aria-expanded', String(isOpen));
+                if (!isOpen) {
+                    mobilePanel.style.maxHeight = '0';
+                } else {
+                    mobilePanel.style.maxHeight = mobilePanel.scrollHeight + 'px';
+                }
+            });
+        }
+
+        function tryPlayHeroVideo() {
+            const video = document.getElementById('heroVideo');
+            if (!video) return;
+            video.muted = true;
+            video.loop = true;
+            video.playsInline = true;
+            video.setAttribute('preload', 'auto');
+
+            const playPromise = video.play();
+            if (playPromise !== undefined) {
+                playPromise.catch(() => {
+                    const retryPlay = () => {
+                        video.play().catch(() => {});
+                        window.removeEventListener('focus', retryPlay);
+                        document.removeEventListener('visibilitychange', retryPlay);
+                    };
+                    window.addEventListener('focus', retryPlay);
+                    document.addEventListener('visibilitychange', retryPlay);
+                });
+            }
+        }
+
+        window.addEventListener('load', tryPlayHeroVideo);
+    </script>
+</body>
+
+</html>

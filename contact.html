@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html class="scroll-smooth dark" lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Contacto | Arev Sport | Calzado y Accesorios Deportivos</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght=300..700&family=Hanken+Grotesk:ital,wght=0,100..900;1,100..900&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon">
+    <link rel="icon" type="image/png" sizes="512x512" href="assets/favicon-512x512.png">
+    <link rel="icon" type="image/png" sizes="256x256" href="assets/favicon-256x256.png">
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#C92127">
+
+    <link rel="stylesheet" href="arev-identity.css">
+    <style>
+        .glass-panel {
+            background: rgba(20, 27, 37, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease, background 0.2s ease;
+        }
+
+        .glass-panel:hover {
+            border-color: rgba(201, 33, 39, 0.3);
+        }
+
+        .cyber-grid {
+            background-image: linear-gradient(rgba(201, 33, 39, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(201, 33, 39, 0.02) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .glow-dot {
+            box-shadow: 0 0 8px #C92127;
+        }
+
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #141B25;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #C92127;
+            border-radius: 10px;
+        }
+
+        /* Estilo para integrar el mapa al diseo cyber-dark */
+        .dark-map {
+            filter: invert(90%) hue-rotate(180deg) brightness(85%) contrast(90%);
+        }
+    </style>
+
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "vector": "#C92127",
+                        "titanium": "#141B25",
+                        "platinum": "#A6AEB5",
+                        "white": "#FFFFFF",
+                        "surface": "#141B25",
+                        "background": "#141B25",
+                        "on-surface": "#FFFFFF",
+                        "on-surface-variant": "#A6AEB5"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "margin-desktop": "64px",
+                        "margin-mobile": "20px",
+                        "unit": "8px",
+                        "container-max": "1440px"
+                    },
+                    "fontFamily": {
+                        "headline-xl": ["Space Grotesk"],
+                        "body-lg": ["Hanken Grotesk"],
+                        "headline-lg-mobile": ["Space Grotesk"],
+                        "headline-md": ["Space Grotesk"],
+                        "label-sm": ["Space Grotesk"],
+                        "headline-lg": ["Space Grotesk"],
+                        "body-md": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "headline-xl": ["64px", { "lineHeight": "1.1", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "letterSpacing": "0.01em", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["32px", { "lineHeight": "1.2", "letterSpacing": "0.02em", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "1.4", "letterSpacing": "0.02em", "fontWeight": "500" }],
+                        "label-sm": ["12px", { "lineHeight": "1", "letterSpacing": "0.1em", "fontWeight": "600" }],
+                        "headline-lg": ["40px", { "lineHeight": "1.2", "letterSpacing": "0.03em", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "letterSpacing": "0", "fontWeight": "400" }]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+
+<body class="bg-background text-on-surface font-body-md antialiased overflow-x-hidden">
+    <header class="arev-header fixed top-0 left-0 right-0 z-50 flex flex-col justify-center" style="background: rgba(20, 27, 37, 0.2); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);">
+        <div style="max-width: 1400px; margin: 0 auto; width: 100%; padding: 0 24px;">
+            <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3 lg:gap-4 py-3">
+                <a class="flex items-center gap-1.5 shrink-0 arev-brand-block" href="index.html" aria-label="Arev Sport inicio">
+                    <img src="assets/logo-arev-actual.png" alt="Arev Sport Logo" class="logo-brand" />
+                    <div class="leading-none" aria-hidden="true">
+                        <span class="block font-label-sm text-[11px] tracking-[0.18em] text-on-surface-variant/95 mt-1 uppercase arev-brand-subtitle font-medium">INNOVACIÓN<span class="opacity-60"> • </span>RENDIMIENTO<span class="opacity-60"> • </span>ESTILO</span>
+                    </div>
+                </a>
+
+                <button id="mobileMenuToggle" class="mobile-menu-button lg:hidden" aria-expanded="false" aria-controls="mobileMenuPanel" aria-label="Abrir menú de navegación">
+                    <span class="material-symbols-outlined text-[22px]">menu</span>
+                </button>
+
+                <nav class="hidden lg:flex items-center justify-center gap-1 arev-capsule rounded-full px-2 py-1">
+                    <a class="arev-nav-item font-label-sm text-[11px] px-5 py-2.5 rounded-full whitespace-nowrap hover:bg-vector/10" href="index.html">INICIO</a>
+                    <a class="arev-nav-item font-label-sm text-[11px] px-5 py-2.5 rounded-full whitespace-nowrap hover:bg-vector/10" href="catalog.html">CATÁLOGO</a>
+                    <a class="arev-nav-item font-label-sm text-[11px] px-5 py-2.5 rounded-full whitespace-nowrap hover:bg-vector/10" href="about.html">NOSOTROS</a>
+                    <a class="arev-nav-item active font-label-sm text-[11px] px-5 py-2.5 rounded-full whitespace-nowrap hover:bg-vector/10" href="contact.html">CONTACTO</a>
+                </nav>
+
+                <div class="flex items-center gap-1 md:gap-2 shrink-0 header-actions">
+                    <div class="hidden md:flex items-center arev-search rounded-full px-4 py-2 w-[240px]">
+                        <input class="w-full bg-transparent text-xs uppercase tracking-[0.16em] placeholder:text-platinum/50 text-white focus:outline-none" placeholder="Buscar" type="text" />
+                        <span class="material-symbols-outlined text-[18px] text-platinum ml-2">search</span>
+                    </div>
+                    <a href="catalog.html" class="p-2 rounded-full text-platinum hover:text-vector hover:bg-vector/10 transition-all duration-300" aria-label="Catálogo">
+                        <span class="material-symbols-outlined text-[22px]">shopping_bag</span>
+                    </a>
+                    <a href="contact.html" class="p-2 rounded-full text-platinum hover:text-vector hover:bg-vector/10 transition-all duration-300" aria-label="Contacto">
+                        <span class="material-symbols-outlined text-[22px]">contact_phone</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="w-full h-px bg-gradient-to-r from-transparent via-vector/50 to-transparent" style="box-shadow: 0 0 4px rgba(201,33,39,0.2);"></div>
+        <nav id="mobileMenuPanel" class="mobile-menu-panel lg:hidden px-4 pb-4">
+            <a class="arev-nav-item font-label-sm px-3 py-3 rounded-full whitespace-nowrap hover:bg-vector/10" href="index.html">INICIO</a>
+            <a class="arev-nav-item font-label-sm px-3 py-3 rounded-full whitespace-nowrap hover:bg-vector/10" href="catalog.html">CATÁLOGO</a>
+            <a class="arev-nav-item font-label-sm px-3 py-3 rounded-full whitespace-nowrap hover:bg-vector/10" href="about.html">NOSOTROS</a>
+            <a class="arev-nav-item active font-label-sm px-3 py-3 rounded-full whitespace-nowrap hover:bg-vector/10" href="contact.html">CONTACTO</a>
+        </nav>
+    </header>
+
+    <main class="pt-28 md:pt-32 pb-24 relative cyber-grid min-h-screen">
+        <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-vector/5 rounded-full blur-[120px] -z-10"></div>
+        <div class="absolute bottom-0 left-0 w-[400px] h-[400px] bg-vector/5 rounded-full blur-[100px] -z-10"></div>
+
+        <div class="max-w-container-max mx-auto px-gutter grid grid-cols-1 lg:grid-cols-12 gap-16 relative z-10">
+            <div class="lg:col-span-5 flex flex-col justify-center space-y-12">
+                <div>
+                    <span
+                        class="inline-block font-label-sm text-label-sm text-vector mb-4 uppercase tracking-widest cyber-glow">Protocolo
+                        de Acceso</span>
+                    <h1 class="font-headline-xl text-headline-xl leading-none mb-6 uppercase">Conéctate con Nosotros
+                    </h1>
+                    <p class="font-body-lg text-body-lg text-on-surface-variant max-w-md">
+                        Visítanos en nuestra tienda física en Charallave o envíanos un mensaje directo. Nuestro equipo
+                        está listo para asesorarte con el calzado e implementos deportivos ideales.
+                    </p>
+                </div>
+                <div class="space-y-8">
+                    <div class="flex items-start gap-4">
+                        <div class="p-3 glass-panel rounded-lg">
+                            <span class="material-symbols-outlined text-vector">location_on</span>
+                        </div>
+                        <div>
+                            <p class="font-label-sm text-label-sm text-vector mb-1 uppercase tracking-widest">Sede
+                                Principal</p>
+                            <p class="font-body-md text-body-md text-on-surface">
+                                Av. Perimetral de Charallave, Edif. Multioficina Conex, Piso PB, Local Nº 08, Urb. Paso Real, Charallave, Edo. Miranda
+                            </p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <div class="p-3 glass-panel rounded-lg flex items-center justify-center shrink-0">
+                            <svg class="h-5 w-5 text-vector" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.472-.148-.672.149-.198.297-.769.966-.944 1.164-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.173.198-.298.297-.497.099-.198.05-.372-.025-.52-.074-.149-.672-1.611-.921-2.206-.242-.579-.487-.5-.672-.51l-.573-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.262.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414-.074-.124-.273-.198-.57-.347z"/>
+                                <path d="M12.004 2.004c-5.52 0-9.996 4.477-9.996 9.996 0 1.76.461 3.47 1.337 4.972l-1.4 5.112 5.201-1.364a9.932 9.932 0 0 0 4.858 1.244c5.52 0 9.996-4.477 9.996-9.996S17.524 2.004 12.004 2.004zm0 18.001c-1.597 0-3.11-.416-4.447-1.204l-.317-.188-3.085.809.822-2.995-.206-.304A8.93 8.93 0 0 1 3.02 12c0-4.957 4.038-8.996 8.993-8.996 4.955 0 8.993 4.039 8.993 8.996 0 4.957-4.038 8.996-8.993 8.996z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <p class="font-label-sm text-label-sm text-vector mb-1 uppercase tracking-widest">WhatsApp
+                                Directo</p>
+                            <a href="https://wa.me/584129114603" target="_blank"
+                                class="font-body-md text-body-md text-on-surface hover:text-vector transition-colors">
+                                +58 412-9114603
+                            </a>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <div class="p-3 glass-panel rounded-lg flex items-center justify-center shrink-0">
+                            <svg class="h-5 w-5 text-vector" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069ZM12 0C8.741 0 8.333.014 7.053.072 2.89.262.26 2.865.072 7.052.014 8.333 0 8.741 0 12s.014 3.668.072 4.948c.189 4.183 2.82 6.79 6.98 6.98C8.333 23.986 8.741 24 12 24s3.668-.014 4.948-.072c4.182-.19 6.79-2.818 6.98-6.98.058-1.28.072-1.689.072-4.948s-.014-3.668-.072-4.948C23.738 2.818 21.11.19 16.949.072 15.668.014 15.26 0 12 0Zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324ZM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8Zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881Z" fill="currentColor"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <p class="font-label-sm text-label-sm text-vector mb-1 uppercase tracking-widest">INSTAGRAM</p>
+                            <a href="https://www.instagram.com/arevsport?utm_source=qr" target="_blank"
+                                class="font-body-md text-body-md text-on-surface hover:text-vector transition-colors tracking-widest">
+                                @arevsport
+                            </a>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <div class="p-3 glass-panel rounded-lg">
+                            <span class="material-symbols-outlined text-vector">schedule</span>
+                        </div>
+                        <div>
+                            <p class="font-label-sm text-label-sm text-vector mb-1 uppercase tracking-widest">Horario
+                                Comercial</p>
+                            <div class="flex items-center gap-2">
+                                <div class="w-2 h-2 rounded-full bg-vector glow-dot animate-pulse"></div>
+                                <p class="font-body-md text-body-md text-on-surface">Lun a Sáb: 9:00 AM - 6:00 PM</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-7 flex items-center">
+                <div id="formContainer"
+                    class="w-full glass-panel p-8 md:p-12 rounded-xl relative transition-all duration-500">
+                    <div class="absolute top-0 right-0 p-4 font-label-sm text-label-sm text-vector opacity-50">
+                        AREV-CONNECT-v2</div>
+
+<form class="space-y-8 transition-opacity duration-500" id="contactForm">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <div class="relative group">
+                                <label
+                                    class="font-label-sm text-label-sm text-vector absolute -top-3 left-0 px-2 bg-titanium z-10 uppercase tracking-widest">Nombre
+                                    Completo</label>
+                                <input name="fullname"
+                                    class="w-full bg-transparent border-b border-white/20 py-4 px-2 font-body-md text-on-surface focus:outline-none focus:border-vector focus:ring-0 transition-all placeholder:text-white/10"
+                                    placeholder="Ej. Juan Pérez" required type="text" minlength="2" />
+                                <span class="error-message hidden absolute -bottom-5 left-0 text-xs text-vector"></span>
+                            </div>
+                            <div class="relative group">
+                                <label
+                                    class="font-label-sm text-label-sm text-vector absolute -top-3 left-0 px-2 bg-titanium z-10 uppercase tracking-widest">Correo
+                                    Electrónico</label>
+                                <input name="email"
+                                    class="w-full bg-transparent border-b border-white/20 py-4 px-2 font-body-md text-on-surface focus:outline-none focus:border-vector focus:ring-0 transition-all placeholder:text-white/10"
+                                    placeholder="Ej. juan@correo.com" required type="email" />
+                                <span class="error-message hidden absolute -bottom-5 left-0 text-xs text-vector"></span>
+                            </div>
+                        </div>
+                        <div class="relative">
+                            <label
+                                class="font-label-sm text-label-sm text-vector absolute -top-3 left-0 px-2 bg-titanium z-10 uppercase tracking-widest">Asunto
+                                de Consulta</label>
+                            <select name="subject"
+                                    class="w-full bg-transparent border-b border-white/20 py-4 px-2 font-body-md text-on-surface focus:outline-none focus:border-vector focus:ring-0 appearance-none bg-titanium">
+                                <option class="bg-titanium text-on-surface">Consulta General / Precios</option>
+                                <option class="bg-titanium text-on-surface">Disponibilidad de Modelos / Tallas</option>
+                                <option class="bg-titanium text-on-surface">Sugerencias o Comentarios</option>
+                                <option class="bg-titanium text-on-surface">Otros Asuntos</option>
+                            </select>
+                        </div>
+                        <div class="relative">
+                            <label
+                                class="font-label-sm text-label-sm text-vector absolute -top-3 left-0 px-2 bg-titanium z-10 uppercase tracking-widest">Mensaje</label>
+                            <textarea name="message"
+                                class="w-full bg-transparent border-b border-white/20 py-4 px-2 font-body-md text-on-surface focus:outline-none focus:border-vector focus:ring-0 transition-all placeholder:text-white/10 resize-none"
+                                placeholder="¿Cómo podemos ayudarte hoy?" required rows="4" minlength="10"></textarea>
+                            <span class="error-message hidden absolute -bottom-5 left-0 text-xs text-vector"></span>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <input
+                                class="w-4 h-4 rounded bg-transparent border-white/20 text-vector focus:ring-0 focus:ring-offset-0"
+                                id="consent" type="checkbox" required />
+                            <label class="font-label-sm text-label-sm text-on-surface-variant cursor-pointer"
+                                for="consent">Acepto los términos de respuesta prioritaria de Arev Sport.</label>
+                        </div>
+                        <button
+                            class="arev-button-primary w-full rounded-full py-5 px-8 font-label-sm text-label-sm flex items-center justify-center gap-4 uppercase tracking-[0.2em]"
+                            type="submit">
+                            <span class="material-symbols-outlined">send</span>
+                            Enviar Mensaje
+                        </button>
+                    </form>
+                    
+                    <div id="errorDisplay" class="hidden opacity-0 transition-opacity duration-300 p-4 bg-vector/10 border border-vector/30 rounded-lg">
+                        <div class="flex items-center gap-3">
+                            <span class="material-symbols-outlined text-vector">error</span>
+                            <p class="text-sm text-vector font-medium"></p>
+                        </div>
+                    </div>
+
+                    <div class="hidden opacity-0 transition-opacity duration-500 p-4 bg-vector/10 border border-vector/20 rounded"
+                        id="statusDisplay">
+                        <div class="flex items-center justify-center flex-col text-center gap-3 py-8">
+                            <span
+                                class="material-symbols-outlined text-vector text-5xl animate-pulse">check_circle</span>
+                            <span
+                                class="font-label-sm text-label-sm text-vector tracking-widest uppercase mt-2">Mensaje
+                                enviado con éxito.</span>
+                            <p class="text-on-surface-variant text-body-md max-w-sm">Protocolo de comunicación
+                                establecido. Nos comunicaremos contigo a la brevedad.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div
+            class="hidden lg:block absolute bottom-12 right-12 w-64 h-64 border-l border-b border-vector/20 pointer-events-none">
+        </div>
+        <div
+            class="hidden lg:block absolute top-12 left-12 w-32 h-32 border-t border-r border-vector/20 pointer-events-none">
+        </div>
+    </main>
+
+    <section class="max-w-container-max mx-auto px-gutter mb-24 relative z-10">
+        <div class="relative h-[450px] w-full glass-panel overflow-hidden rounded-lg group">
+            <iframe
+                class="w-full h-full border-0 opacity-40 grayscale group-hover:grayscale-0 group-hover:opacity-70 transition-all duration-700 dark-map"
+                src="https://www.google.com/maps/embed?pb=!1m13!1m8!1m3!1d2941.5844547024726!2d-66.85500084074631!3d10.217618728247125!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMTDCsDEzJzAyLjkiTiA2NsKwNTEnMDkuOSJX!5e0!3m2!1ses!2sve!4v1779545365823!5m2!1ses!2sve"
+                allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+            <div
+                class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent pointer-events-none">
+            </div>
+            <div
+                class="absolute bottom-6 left-6 glass-panel py-3 px-6 rounded border border-vector/20 bg-background/90 pointer-events-none">
+                <p class="font-headline-md text-body-lg text-on-surface uppercase tracking-wider font-bold">C.C. Paso
+                    Real</p>
+                <p class="font-label-sm text-vector tracking-widest mt-1">CHARALLAVE, EDO. MIRANDA</p>
+            </div>
+        </div>
+    </section>
+
+<footer class="w-full py-16 md:py-24 px-margin-mobile md:px-margin-desktop bg-titanium border-t border-white/5">
+        <div class="max-w-container-max mx-auto flex flex-col gap-12">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
+                <div class="flex flex-col gap-3">
+                    <a class="flex items-center gap-3" href="index.html">
+                        <img src="assets/logo-arev-actual.png" alt="Arev Sport Logo" class="logo-footer" />
+                    </a>
+                    <p class="font-label-sm text-label-sm tracking-widest text-on-surface-variant max-w-lg leading-relaxed uppercase">
+                        Centro Comercial Paso Real, Nivel PB, Charallave, Edo. Miranda, Venezuela.<br/>
+                        Contacto: +58 412-9114603
+                    </p>
+                    <div class="flex gap-4 mt-2">
+                        <a href="https://wa.me/584129114603" target="_blank" class="p-2 rounded-full bg-vector/10 text-vector hover:bg-vector hover:text-white transition-all" aria-label="WhatsApp">
+                            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.472-.148-.672.149-.198.297-.769.966-.944 1.164-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.173.198-.298.297-.497.099-.198.05-.372-.025-.52-.074-.149-.672-1.611-.921-2.206-.242-.579-.487-.5-.672-.51l-.573-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.262.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414-.074-.124-.273-.198-.57-.347z"/>
+                            </svg>
+                        </a>
+                        <a href="https://www.instagram.com/arevsport" target="_blank" class="p-2 rounded-full bg-vector/10 text-vector hover:bg-vector hover:text-white transition-all" aria-label="Instagram">
+                            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069ZM12 0C8.741 0 8.333.014 7.053.072 2.89.262.26 2.865.072 7.052.014 8.333 0 8.741 0 12s.014 3.668.072 4.948c.189 4.183 2.82 6.79 6.98 6.98C8.333 23.986 8.741 24 12 24s3.668-.014 4.948-.072c4.182-.19 6.79-2.818 6.98-6.98.058-1.28.072-1.689.072-4.948s-.014-3.668-.072-4.948C23.738 2.818 21.11.19 16.949.072 15.668.014 15.26 0 12 0Zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324ZM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8Zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881Z" fill="currentColor"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="flex flex-wrap gap-6 md:gap-10">
+                    <a class="font-label-sm text-label-sm tracking-widest text-on-surface-variant hover:text-vector transition-colors duration-200" href="index.html">INICIO</a>
+                    <a class="font-label-sm text-label-sm tracking-widest text-on-surface-variant hover:text-vector transition-colors duration-200" href="catalog.html">CATÁLOGO</a>
+                    <a class="font-label-sm text-label-sm tracking-widest text-on-surface-variant hover:text-vector transition-colors duration-200" href="about.html">NOSOTROS</a>
+                    <a class="font-label-sm text-label-sm tracking-widest text-on-surface-variant hover:text-vector transition-colors duration-200" href="contact.html">CONTACTO</a>
+                </div>
+            </div>
+            <div class="h-[1px] bg-white/10 w-full"></div>
+            <div class="flex flex-col sm:flex-row justify-between items-center gap-6 text-center sm:text-left">
+                <p class="font-label-sm text-label-sm tracking-widest text-on-surface-variant/50">
+                    © 2026 AREV SPORT. TODOS LOS DERECHOS RESERVADOS.
+                </p>
+                <div class="flex gap-6">
+                    <a href="https://wa.me/584129114603" target="_blank" class="flex items-center gap-2 font-label-sm text-label-sm text-vector hover:bg-vector/10 transition-all rounded-full px-4 py-2">
+                        <svg class="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.472-.148-.672.149-.198.297-.769.966-.944 1.164-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.173.198-.298.297-.497.099-.198.05-.372-.025-.52-.074-.149-.672-1.611-.921-2.206-.242-.579-.487-.5-.672-.51l-.573-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.262.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414-.074-.124-.273-.198-.57-.347z"/>
+                        </svg>
+                        WHATSAPP
+                    </a>
+                    <a href="https://www.instagram.com/arevsport" target="_blank" class="flex items-center gap-2 font-label-sm text-label-sm text-vector hover:bg-vector/10 transition-all rounded-full px-4 py-2">
+                        <svg class="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069ZM12 0C8.741 0 8.333.014 7.053.072 2.89.262.26 2.865.072 7.052.014 8.333 0 8.741 0 12s.014 3.668.072 4.948c.189 4.183 2.82 6.79 6.98 6.98C8.333 23.986 8.741 24 12 24s3.668-.014 4.948-.072c4.182-.19 6.79-2.818 6.98-6.98.058-1.28.072-1.689.072-4.948s-.014-3.668-.072-4.948C23.738 2.818 21.11.19 16.949.072 15.668.014 15.26 0 12 0Zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324ZM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8Zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881Z" fill="currentColor"/>
+                        </svg>
+                        INSTAGRAM
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+<script>
+        const contactForm = document.getElementById('contactForm');
+        const statusDisplay = document.getElementById('statusDisplay');
+        const errorDisplay = document.getElementById('errorDisplay');
+
+        function showError(message) {
+            if (errorDisplay) {
+                errorDisplay.querySelector('p').textContent = message;
+                errorDisplay.classList.remove('hidden');
+                errorDisplay.classList.add('opacity-100');
+                setTimeout(() => {
+                    errorDisplay.classList.add('hidden');
+                    errorDisplay.classList.remove('opacity-100');
+                }, 5000);
+            }
+        }
+
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+
+        if (contactForm) {
+            contactForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+                
+                const form = this;
+                const btn = form.querySelector('button');
+                const data = new FormData(form);
+                
+                const fullname = (data.get('fullname') || '').trim();
+                const email = (data.get('email') || '').trim();
+                const message = (data.get('message') || '').trim();
+                const consent = document.getElementById('consent').checked;
+
+                if (!fullname || fullname.length < 2) {
+                    showError('Por favor ingresa tu nombre completo (mínimo 2 caracteres).');
+                    return;
+                }
+                
+                if (!email || !validateEmail(email)) {
+                    showError('Por favor ingresa un correo electrónico válido.');
+                    return;
+                }
+                
+                if (!message || message.length < 10) {
+                    showError('El mensaje debe tener al menos 10 caracteres.');
+                    return;
+                }
+                
+                if (!consent) {
+                    showError('Debes aceptar los términos para enviar el mensaje.');
+                    return;
+                }
+
+                const subject = data.get('subject');
+                const fullMessage = `Hola Arev Sport, tengo una consulta:\n\nNombre: ${fullname}\nCorreo: ${email}\nAsunto: ${subject}\n\nMensaje: ${message}`;
+
+                btn.innerHTML = '<span class="material-symbols-outlined animate-spin">sync</span> ENVIANDO...';
+                btn.style.opacity = '0.7';
+                btn.disabled = true;
+
+                window.setTimeout(() => {
+                    window.open(`https://wa.me/584129114603?text=${encodeURIComponent(fullMessage)}`, '_blank', 'noopener,noreferrer');
+
+                    form.classList.add('opacity-0');
+
+                    window.setTimeout(() => {
+                        form.remove();
+                        statusDisplay.classList.remove('hidden');
+                        statusDisplay.offsetWidth;
+                        statusDisplay.classList.add('opacity-100');
+                    }, 500);
+                }, 800);
+            });
+        }
+
+        const cards = document.querySelectorAll('.glass-panel, #formContainer');
+        cards.forEach(card => {
+            if (card) {
+                document.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+
+                    if (x > 0 && x < rect.width && y > 0 && y < rect.height) {
+                        card.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(201, 33, 39, 0.06) 0%, rgba(20, 27, 37, 0.8) 70%)`;
+                    }
+                });
+            }
+        });
+
+        let lastScroll = 0;
+        const header = document.querySelector('header');
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            if (currentScroll <= 100) {
+                header.style.transform = 'translateY(0)';
+                header.classList.remove('bg-titanium/95');
+                return;
+            }
+            if (currentScroll > lastScroll) {
+                header.style.transform = 'translateY(-100%)';
+            } else {
+                header.style.transform = 'translateY(0)';
+                header.classList.add('bg-titanium/95');
+            }
+            lastScroll = currentScroll;
+        });
+
+        const mobileToggle = document.getElementById('mobileMenuToggle');
+        const mobilePanel = document.getElementById('mobileMenuPanel');
+
+        if (mobileToggle && mobilePanel) {
+            mobileToggle.addEventListener('click', () => {
+                const isOpen = mobilePanel.classList.toggle('open');
+                mobileToggle.setAttribute('aria-expanded', String(isOpen));
+                if (!isOpen) {
+                    mobilePanel.style.maxHeight = '0';
+                } else {
+                    mobilePanel.style.maxHeight = mobilePanel.scrollHeight + 'px';
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>
+
+
+
+
