@@ -244,7 +244,13 @@ function renderizarProductos(listaProductos, contenedor) {
         tarjeta.className = 'glass-panel overflow-hidden relative group cursor-pointer border border-platinum/20 rounded-lg flex flex-col justify-between transition-all duration-300 hover:border-vector/50 bg-titanium/80';
         tarjeta.dataset.category = (producto.CATEGORIA || '').toUpperCase();
 
-        const imagenUrl = producto.IMAGEN || 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&q=80&w=800';
+        const imagenRaw = String(producto.IMAGEN || producto.LINK || '').trim();
+        const imagenUrl = imagenRaw
+            ? imagenRaw
+                .replace(/^"+|"+$/g, '')
+                .replace(/\\/g, '/')
+                .replace(/^.*?(assets\/productos\/)/, '$1')
+            : 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&q=80&w=800';
         const precio = normalizarPrecio(producto.PRECIO);
         const categoria = producto.CATEGORIA || 'Producto';
         const nombre = producto.NOMBRE || 'Sin nombre';
@@ -423,7 +429,7 @@ function addToCart(producto) {
     const id = producto.ID || producto.NOMBRE;
     const price = parseFloat(normalizarPrecio(producto.PRECIO)) || 0;
     const name = producto.NOMBRE || 'Producto';
-    const image = producto.IMAGEN || '';
+    const image = producto.IMAGEN || producto.LINK || '';
 
     if (!id) return;
 
